@@ -12,6 +12,11 @@
 
     <h2>Test</h2>
 
+    <?php
+        echo 'Current PHP version: ' . phpversion();
+        echo 'PHP is working';
+    ?>
+
 </body>
 
 </html>
