@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gastenboek</title>
+    
+    <?php require('message.php');?>
+    <?php require('functions.php');?>
+
 </head>
 
 <body>
 
-    <h2>Test</h2>
+
+    <h2>Test PHP classes</h2>
 
     <?php
-        echo 'Current PHP version: ' . phpversion();
-        echo 'PHP is working';
+        
+        testPage();
+
     ?>
 
 </body>
