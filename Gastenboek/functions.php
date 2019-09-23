@@ -1,15 +1,12 @@
 
 <?php
 
-function testPage() {
-    $msg1 = new Message("Content of test message 1.");
-    $msg2 = new Message("Content of test message 2.");
-    $testMessages = array();
-    array_push($testMessages, $msg1, $msg2);
+function testMessageBlock() {
+    $msgBlock = new MessageBlock(new Message("Content of test message"));
+    $msgBlock->addComment(new Comment("Content of test comment 1"));
+    $msgBlock->addComment(new Comment("Content of test comment 2"));
 
-    foreach ($testMessages as $msg) {
-        echo $msg->getContent();
-    }
+    $msgBlock->printMessageBlock();
 }
 
 ?>

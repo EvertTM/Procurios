@@ -6,20 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gastenboek</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     
-    <?php require('message.php');?>
     <?php require('functions.php');?>
+    <?php require('messageBlock.php');?>
+    <?php require('message.php');?>
+    <?php require('comment.php');?>
 
 </head>
 
 <body>
 
 
-    <h2>Test PHP classes</h2>
+    <h2>Gastenboek</h2>
 
     <?php
         
-        testPage();
+        testMessageBlock();
 
     ?>
 
