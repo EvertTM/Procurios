@@ -15,23 +15,23 @@ class MessageBlock {
 
     public function addComment($comment) {
         array_push($this->comments, $comment);
+        
+        usort($this->comments, function($a, $b) {
+            return strtotime($a->timestamp) - strtotime($b->timestamp);
+        });
     }
 
     public function printMessageBlock() {
         $html = "" . 
 <<<HTML
     <div class="msgBlock">
-        ID: {$this->id}
-        Tijdstip: {$this->timestamp}
+        <!-- ID: {$this->id}
+        Tijdstip: {$this->timestamp} -->
         <div class="msg">
             {$this->message->getContent()}
         </div>
         <div class="comments">
 HTML;
-
-        usort($this->comments, function($a, $b) {
-            return strtotime($a->timestamp) - strtotime($b->timestamp);
-        });
 
         foreach ($this->comments as $cmt) {
 
@@ -42,7 +42,7 @@ HTML;
 <<<HTML
         </div>
         <div>
-            <form action="" method="post">
+            <form action="" method="post" class="commentForm">
                 Voeg reactie toe: <input type="text" name="commentContent">
                 <input hidden name="messageID" value="{$this->id}">
                 <input type="submit" value="Toevoegen">
