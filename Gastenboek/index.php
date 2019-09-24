@@ -33,8 +33,9 @@
         checkButtons();
         printMessageBlocks();
 
-
     ?>
+
+    <a class="cleanPage" href="cleanPage.php">De bezem erdoor!</a>
 
     
 
