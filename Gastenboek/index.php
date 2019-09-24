@@ -28,15 +28,13 @@
     </form>
 
     <?php
-        // session_destroy();
-        
         checkButtons();
         printMessageBlocks();
-
     ?>
 
-    <a class="cleanPage" href="cleanPage.php">De bezem erdoor!</a>
-
+    <?php if (isset($_SESSION["msgBlocks"]) && sizeof($_SESSION["msgBlocks"]) > 0): ?>
+        <a class="cleanPage" href="cleanPage.php">De bezem erdoor!</a>
+    <?php endif ?>
     
 
 </body>

@@ -3,6 +3,12 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
+
+    font-family: 'PT Sans', Arial, sans-serif;
+}
+
+h2 {
+    align-self: center;
 }
 
 .msgBlock {
@@ -26,6 +32,7 @@ body {
 }
 
 .commentForm {
+    margin: 20px;
     margin-left: 100px;
 }
 
@@ -42,9 +49,10 @@ body {
     vertical-align: middle;
     width: fit-content;
     margin: 50px;
-    padding: 5px;
+    padding: 15px;
     border-radius: 10px;
     background-color: #060;
     text-decoration: none;
     color: #0a0;
+    font-weight: bold;
 }

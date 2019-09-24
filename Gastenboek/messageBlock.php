@@ -30,17 +30,18 @@ class MessageBlock {
         <div class="msg">
             {$this->message->getContent()}
         </div>
-        <div class="comments">
 HTML;
+        if (sizeof($this->comments) > 0) {
+            $html .= "<div class=\"comments\">";
+            foreach ($this->comments as $cmt) {
 
-        foreach ($this->comments as $cmt) {
-
-            $html .= $cmt->getContent();
+                $html .= $cmt->getContent();
+            }
+            $html .= "</div>";
         }
 
         $html .= 
 <<<HTML
-        </div>
         <div>
             <form action="" method="post" class="commentForm">
                 Voeg reactie toe: <input type="text" name="commentContent">

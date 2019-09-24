@@ -41,7 +41,7 @@ function addMessage($content) {
     if (!isset($_SESSION["msgBlocks"])) {
         $_SESSION["msgBlocks"] = array();
     }
-    $msgBlock = new MessageBlock(new Message($content));
+    $msgBlock = new MessageBlock(new Message(strip_tags($content, '<br>')));
     array_push($_SESSION["msgBlocks"], $msgBlock);
 }
 
@@ -50,7 +50,7 @@ function addComment($content, $messageID) {
     if (isset($_SESSION["msgBlocks"])) {
         foreach ($_SESSION["msgBlocks"] as $msgBlock) {
             if ($msgBlock->id == $messageID) {
-                $comment = new Comment($content);
+                $comment = new Comment(strip_tags($content, '<br>'));
                 $msgBlock->addComment($comment);
             }
         }
