@@ -1,11 +1,16 @@
 <?php
 
 class MessageBlock {
+    public $id;
     private $message;
-    private $comments = array();
+    private $comments;
+    private $commentCreator;
 
     function __construct($message) {
+        $this->id = uniqid();
         $this->message = $message;
+        $this->comments = array();
+        $this->commentCreator = new CommentCreator($this->id);
     }
 
     public function addComment($comment) {
@@ -13,14 +18,13 @@ class MessageBlock {
     }
 
     public function printMessageBlock() {
-        $html = "<div><div>" . $this->message->getContent() . "</div>";
-        $html .= "<div>";
+        $html = "<div class=\"msgBlock\">id: " . $this->id . "<div class=\"msg\">" . $this->message->getContent() . "</div><div class=\"comments\">";
 
         foreach ($this->comments as $cmt) {
             $html .= $cmt->getContent();
         }
-        
-        $html .= "</div></div>";
+
+        $html .= "</div><div>" . $this->commentCreator->getCommentForm() . "</div></div>";
 
         echo $html;
     }

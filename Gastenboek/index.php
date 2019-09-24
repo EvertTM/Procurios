@@ -1,3 +1,9 @@
+<?php 
+    require_once('classes.php');
+    require_once('functions.php');
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,11 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gastenboek</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    
-    <?php require('functions.php');?>
-    <?php require('messageBlock.php');?>
-    <?php require('message.php');?>
-    <?php require('comment.php');?>
+
 
 </head>
 
@@ -19,12 +21,22 @@
 
 
     <h2>Gastenboek</h2>
+    
+    <form action="" method="post">
+        Voeg bericht toe: <input type="text" name="messageContent">
+        <input type="submit" value="Toevoegen">
+    </form>
 
     <?php
+        // session_destroy();
         
-        testMessageBlock();
+        checkButtons();
+        printMessageBlocks();
+
 
     ?>
+
+    
 
 </body>
 

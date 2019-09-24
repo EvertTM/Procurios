@@ -1,7 +1,9 @@
-div {
+.msgBlock {
     border: 2px solid black;
+    margin-top: 20px;
 }
 
-div div {
+.msg {
     border: 1px solid black;
+    margin: 10px;
 }
