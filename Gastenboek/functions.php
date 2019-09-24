@@ -15,6 +15,11 @@ function createContent() {
 function printMessageBlocks() {
 
     if (isset($_SESSION["msgBlocks"]) && sizeof($_SESSION["msgBlocks"]) > 0) {
+
+        usort($_SESSION["msgBlocks"], function($a, $b) {
+            return strtotime($a->timestamp) - strtotime($b->timestamp);
+        });
+
         foreach($_SESSION["msgBlocks"] as  $msgBlock) {
             $msgBlock->printMessageBlock();
         }
@@ -25,9 +30,9 @@ function checkButtons() {
     if (isset($_POST['messageContent'])) {
         addMessage($_POST['messageContent']);
         unset($_POST['messageContent']);
-    } else if (isset($_POST['commentContent']) && isset($_POST['parentID'])) {
-        addComment($_POST['commentContent'], $_POST['parentID']);
-        unset($_POST['commentContent'], $_POST['parentID']);
+    } else if (isset($_POST['commentContent']) && isset($_POST['messageID'])) {
+        addComment($_POST['commentContent'], $_POST['messageID']);
+        unset($_POST['commentContent'], $_POST['messageID']);
     }
 }
 
@@ -40,11 +45,11 @@ function addMessage($content) {
     array_push($_SESSION["msgBlocks"], $msgBlock);
 }
 
-function addComment($content, $parentId) {
+function addComment($content, $messageID) {
 
     if (isset($_SESSION["msgBlocks"])) {
         foreach ($_SESSION["msgBlocks"] as $msgBlock) {
-            if ($msgBlock->id == $parentId) {
+            if ($msgBlock->id == $messageID) {
                 $comment = new Comment($content);
                 $msgBlock->addComment($comment);
             }

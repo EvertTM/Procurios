@@ -2,11 +2,13 @@
 
 class MessageBlock {
     public $id;
+    public $timestamp;
     private $message;
     private $comments;
 
     function __construct($message) {
         $this->id = uniqid();
+        $this->timestamp = time();
         $this->message = $message;
         $this->comments = array();
     }
@@ -19,14 +21,20 @@ class MessageBlock {
         $html = "" . 
 <<<HTML
     <div class="msgBlock">
-        id: {$this->id}
+        ID: {$this->id}
+        Tijdstip: {$this->timestamp}
         <div class="msg">
             {$this->message->getContent()}
         </div>
         <div class="comments">
 HTML;
 
+        usort($this->comments, function($a, $b) {
+            return strtotime($a->timestamp) - strtotime($b->timestamp);
+        });
+
         foreach ($this->comments as $cmt) {
+
             $html .= $cmt->getContent();
         }
 
@@ -36,7 +44,7 @@ HTML;
         <div>
             <form action="" method="post">
                 Voeg reactie toe: <input type="text" name="commentContent">
-                <input hidden name="parentID" value="{$this->id}">
+                <input hidden name="messageID" value="{$this->id}">
                 <input type="submit" value="Toevoegen">
             </form>
         </div>
